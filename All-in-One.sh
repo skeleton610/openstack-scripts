@@ -63,16 +63,14 @@ source ~/.bashrc
 echo "
 ######################################
 	Content of ~/openrc
-######################################
-"
+######################################"
 cat ~/openrc
 sleep 1
 
 echo "
 ######################################
 	Install ntp server
-######################################
-"
+######################################"
 sleep 1
 
 apt-get install -y ntp
@@ -87,8 +85,7 @@ service ntp restart
 echo "
 ######################################
 	Install Mysql Server
-######################################
-"
+######################################"
 sleep 1
 
 # Store password in /var/cache/debconf/passwords.dat
@@ -120,8 +117,7 @@ mysql -u root -p$MYSQL_PASS -e "GRANT ALL ON nova_db.* TO 'nova'@'localhost' IDE
 echo "
 #####################################
 	Install Keystone
-#####################################
-"
+#####################################"
 sleep 1
 
 apt-get install -y keystone python-keystone python-keystoneclient
@@ -224,8 +220,7 @@ done
 echo "
 ####################################
 	Install Glance
-####################################
-"
+####################################"
 sleep 1
 
 apt-get install -y glance glance-api glance-client glance-common glance-registry python-glance
@@ -272,8 +267,7 @@ restart glance-registry
 echo "
 #####################################
 	Install Nova
-#####################################
-"
+#####################################"
 sleep 1
 
 # Check to install nova-compute-kvm or nova-compute-qemu
@@ -413,12 +407,21 @@ cd
 echo "
 #####################################
 	Install Horizon
-#####################################
-"
+#####################################"
 sleep 1
 
 apt-get -y install openstack-dashboard
 
 service apache2 restart
+
+echo "
+#################################################################
+#
+#    Now you can open your browser and enter IP $IP
+#    Login with your user/password
+#    Default is admin:password
+#    Enjoy!
+#
+#################################################################"
 
 #===END===#
