@@ -418,8 +418,7 @@ echo "
 #################################################################
 #
 #    Now you can open your browser and enter IP $IP
-#    Login with your user/password
-#    Default is admin:password
+#    Login with your user/password $CLOUD_ADMIN:$CLOUD_ADMIN_PASS
 #    Enjoy!
 #
 #################################################################"
