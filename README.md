@@ -10,9 +10,10 @@ This repo supplies a set of scripts to automatic install Openstack components.
 ====================
 
 Install Openstack with there components:
-    - keystone
-    - glance 
-    - nova (using VlanManager)
+
+    keystone
+    glance 
+    nova (using VlanManager)
     
 By default you it uses only one NIC (eth0), if you have more than one NICs. You can fix it on the config values part in the script.
 
