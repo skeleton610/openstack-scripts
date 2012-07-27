@@ -1,13 +1,16 @@
-################################################################################################
+#########################################################################################
 #
 #	Author. Tung Ns (tungns.inf@gmail.com)
 #
-#	This script will install an Openstack controller node with:
-#		keystone, glance and nova
-#	It also runs nova-compute, so you can upload and run instance on this node.
-#
+#	This script will install an Openstack on single machine with three components:
+#		- keystone
+#		- glance
+#		- nova : all components, nova-network uses VlanManager
+#   By default this script will use only single NIC eth0 if you have more than one	
+#   feel free to change it in the config values below.
+#   
 #																				
-################################################################################################
+#########################################################################################
 
 
 #!/bin/bash
@@ -20,18 +23,23 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
+###############################################
 # Change these values to fit your requirements
+###############################################
 
-IP=192.168.10.11
-MYSQL_PASS=root
-CLOUD_ADMIN=admin
-CLOUD_ADMIN_PASS=password
-TENANT=demoProject
-REGION=RegionOne
-PUBLIC_IP_RANGE=192.168.10.64/27
-HYPERVISOR=qemu # or kvm for real machine
-NOVA_VOLUME=/dev/sdb # Partition to use with nova-volume
+IP=192.168.1.11             # You public IP 
+PUBLIC_IP_RANGE=192.168.1.64/27 # The floating IP range
+PUBLIC_NIC=eth0             # The public NIC, floating network, allow instance connect to Internet
+PRIVATE_NIC=eth0            # The private NIC, fixed network. If you have more than 2 NICs specific it ex: eth1
+MYSQL_PASS=root             # Default password of mysql-server
+CLOUD_ADMIN=admin           # Cloud admin of Openstack
+CLOUD_ADMIN_PASS=password   # Password will use to login into Dashboard later
+TENANT=demoProject          # The name of tenant (project)
+REGION=RegionOne            # You must specific it. Imagine that you have multi datacenter. Not important, just keep it by default
+HYPERVISOR=qemu             # if your machine support KVM (check by run $ kvm-ok), change QEMU to KVM
+NOVA_VOLUME=/dev/sdb        # Partition to use with nova-volume, here I have 2 HDD then it is sdb
 
+################################################
 # Create ~/openrc
 
 cat > ~/openrc <<EOF
@@ -311,8 +319,8 @@ cat > /etc/nova/nova.conf <<EOF
 
 #=nova-network
 --network_manager=nova.network.manager.VlanManager
---public_interface=eth0
---vlan_interface=eth0
+--public_interface=$PUBLIC_NIC
+--vlan_interface=$PRIVATE_NIC
 --fixed_range=10.0.0.0/8
 --network_size=1024
 --dhcpbridge_flagfile=/etc/nova/nova.conf
@@ -321,7 +329,7 @@ cat > /etc/nova/nova.conf <<EOF
 --fixed_ip_disassociate_timeout=30
 --ec2_url=http://$IP:8773/services/Cloud
 --ec2_dmz_host=$IP
---multi_host=True
+#--multi_host=True
 
 #=nova-compute
 --connection_type=libvirt
@@ -386,7 +394,7 @@ sleep 2
 
 nova-manage network create --label vlan1 --fixed_range_v4 10.0.1.0/24 --num_networks 1 --network_size 256 --vlan 1 #--multi_host=T
 
-nova-manage floating create --pool pool1 --ip_range $PUBLIC_IP_RANGE
+nova-manage floating create --ip_range $PUBLIC_IP_RANGE
 
 # Define security rules
 
