@@ -364,10 +364,10 @@ EOF
 
 # Config nova-volume
 
-#vgremove nova-volumes $NOVA_VOLUME # just for sure, if the 1st time this script failed, then rerun...
+vgremove nova-volumes $NOVA_VOLUME # just for sure, if the 1st time this script failed, then rerun...
 
-#pvcreate -ff -y $NOVA_VOLUME # if rerun the script we need force option
-#vgcreate nova-volumes $NOVA_VOLUME
+pvcreate -ff -y $NOVA_VOLUME # if rerun the script we need force option
+vgcreate nova-volumes $NOVA_VOLUME
 
 cat > ~/nova_restart <<EOF
 sudo restart libvirt-bin
