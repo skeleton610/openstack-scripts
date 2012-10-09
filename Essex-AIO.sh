@@ -7,21 +7,13 @@
 #		- glance
 #		- nova : all components, nova-network uses VlanManager
 #   By default this script will use only single NIC eth0 if you have more than one	
-#   feel free to change it in the config values below.
+#   feel free to change in the values below.
 #   
 #																				
 #########################################################################################
 
 
 #!/bin/bash
-
-# Check if user is root
-
-if [ "$(id -u)" != "0" ]; then
-   echo "This script must be run as root"
-   echo "Please run $ sudo bash then rerun this script"
-   exit 1
-fi
 
 ###############################################
 # Change these values to fit your requirements
@@ -40,6 +32,15 @@ HYPERVISOR=qemu             # if your machine support KVM (check by run $ kvm-ok
 NOVA_VOLUME=/dev/sdb        # Partition to use with nova-volume, here I have 2 HDD then it is sdb
 
 ################################################
+
+# Check if user is root
+
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root"
+   echo "Please run $ sudo bash then rerun this script"
+   exit 1
+fi
+
 # Create ~/openrc
 
 cat > ~/openrc <<EOF
