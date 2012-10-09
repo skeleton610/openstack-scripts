@@ -1,6 +1,6 @@
 ################################################################################################
 #
-#	This script will download tty-linux image from:
+#	This script will download Cirros image from:
 #   https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img
 #	Then upload it to glance
 #   It is a qcow2 format (for qemu/kvm - high compressed) ~ 9.3 MB
@@ -14,7 +14,7 @@
 
 # Scource the openrc file # just for sure if we source the openrc file
 
-source ~/.bashrc
+source ~/openrc
 
 # Create a new folder to store all the image like tty-linux
 
