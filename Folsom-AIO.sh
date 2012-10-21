@@ -6,8 +6,8 @@
 #		- keystone
 #		- glance
 #		- nova : all components (nova-network using VlanManager mode)
-#       - cinder (replace nova-volume)
-#       - horizon
+#		- cinder (replace nova-volume)
+#		- horizon
 #
 #########################################################################################
 
