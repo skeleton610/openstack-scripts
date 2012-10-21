@@ -21,7 +21,7 @@
 # Change these values to fit your requirements
 ###############################################
 
-IP=192.167.0.110             	# You public IP 
+IP=192.167.0.110				# You public IP 
 PUBLIC_IP_RANGE=192.168.0.164/27	# The floating IP range
 PUBLIC_NIC=eth0					# The public NIC, floating network, allow instance connect to Internet
 PRIVATE_NIC=eth0				# The private NIC, fixed network. If you have more than 2 NICs specific it eg: eth1
@@ -30,9 +30,8 @@ CLOUD_ADMIN=admin				# Cloud admin of Openstack
 CLOUD_ADMIN_PASS=password		# Password will use to login into Dashboard later
 TENANT=openstackDemo			# The name of tenant (project)
 SERVICE_TENANT=service			# Service tenant
-REGION=RegionOne            	# You must specific it. Imagine that you have multi datacenter. Not important, just keep it by default
-HYPERVISOR=qemu             	# if your machine support KVM (check by run $ kvm-ok), change QEMU to KVM
-#NOVA_VOLUME=/dev/sdb        	# Partition to use with nova-volume, here I have 2 HDD then it is sdb
+REGION=RegionOne				# You must specific it. Imagine that you have multi datacenter. Not important, just keep it by default
+HYPERVISOR=qemu					# if your machine support KVM (check by run $ kvm-ok), change QEMU to KVM
 
 ################################################
 
