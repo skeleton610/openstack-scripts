@@ -387,7 +387,7 @@ novncproxy_base_url=http://$IP:6080/vnc_auto.html
 novncproxy_port=6080
 xvpvncproxy_base_url=http://$IP:6081/console
 vncserver_listen=0.0.0.0
-vncserver_proxyclient_address=$IP
+vncserver_proxyclient_address=127.0.0.1
 
 # APIs
 osapi_compute_extension=nova.api.openstack.compute.contrib.standard_extensions
