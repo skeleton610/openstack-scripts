@@ -2,10 +2,11 @@
 #
 #	Author. Tung Ns (tungns.inf@gmail.com)
 #
-#	This script will install an Openstack on single machine with three components:
+#	This script will install an Openstack on Ubuntu 12.04LTS with these components:
 #		- keystone
 #		- glance
 #		- nova : all components, nova-network uses VlanManager
+#		- horizon
 #   By default this script will use only single NIC eth0 if you have more than one	
 #   feel free to change in the values below.
 #   
@@ -19,17 +20,17 @@
 # Change these values to fit your requirements
 ###############################################
 
-IP=192.168.1.11             # You public IP 
+IP=192.168.1.11             	# You public IP 
 PUBLIC_IP_RANGE=192.168.1.64/27 # The floating IP range
-PUBLIC_NIC=eth0             # The public NIC, floating network, allow instance connect to Internet
-PRIVATE_NIC=eth0            # The private NIC, fixed network. If you have more than 2 NICs specific it ex: eth1
-MYSQL_PASS=root             # Default password of mysql-server
-CLOUD_ADMIN=admin           # Cloud admin of Openstack
-CLOUD_ADMIN_PASS=password   # Password will use to login into Dashboard later
-TENANT=demoProject          # The name of tenant (project)
-REGION=RegionOne            # You must specific it. Imagine that you have multi datacenter. Not important, just keep it by default
-HYPERVISOR=qemu             # if your machine support KVM (check by run $ kvm-ok), change QEMU to KVM
-NOVA_VOLUME=/dev/sdb        # Partition to use with nova-volume, here I have 2 HDD then it is sdb
+PUBLIC_NIC=eth0             	# The public NIC, floating network, allow instance connect to Internet
+PRIVATE_NIC=eth0            	# The private NIC, fixed network. If you have more than 2 NICs specific it ex: eth1
+MYSQL_PASS=root             	# Default password of mysql-server
+CLOUD_ADMIN=admin           	# Cloud admin of Openstack
+CLOUD_ADMIN_PASS=password   	# Password will use to login into Dashboard later
+TENANT=demoProject          	# The name of tenant (project)
+REGION=RegionOne            	# You must specific it. Imagine that you have multi datacenter. Not important, just keep it by default
+HYPERVISOR=qemu             	# if your machine support KVM (check by run $ kvm-ok), change QEMU to KVM
+NOVA_VOLUME=/dev/sdb        	# Partition to use with nova-volume, here I have 2 HDD then it is sdb
 
 ################################################
 
@@ -64,15 +65,17 @@ source ~/.bashrc
 echo "
 ######################################
 	Content of ~/openrc
-######################################"
+######################################
+"
 cat ~/openrc
-sleep 1
+sleep 2
 
 echo "
 ######################################
 	Install ntp server
-######################################"
-sleep 1
+######################################
+"
+sleep 2
 
 apt-get install -y ntp
 
@@ -86,8 +89,9 @@ service ntp restart
 echo "
 ######################################
 	Install Mysql Server
-######################################"
-sleep 1
+######################################
+"
+sleep 2
 
 # Store password in /var/cache/debconf/passwords.dat
 
@@ -118,8 +122,9 @@ mysql -u root -p$MYSQL_PASS -e "GRANT ALL ON nova_db.* TO 'nova'@'localhost' IDE
 echo "
 #####################################
 	Install Keystone
-#####################################"
-sleep 1
+#####################################
+"
+sleep 2
 
 apt-get install -y keystone python-keystone python-keystoneclient
 
@@ -133,7 +138,7 @@ sleep 2
 keystone-manage db_sync
 sleep 2
 service keystone restart
-sleep 2
+sleep 3
 
 KEYSTONE_IP=$IP
 SERVICE_ENDPOINT=http://$IP:35357/v2.0/
@@ -221,8 +226,9 @@ done
 echo "
 ####################################
 	Install Glance
-####################################"
-sleep 1
+####################################
+"
+sleep 2
 
 apt-get install -y glance glance-api glance-client glance-common glance-registry python-glance
 
@@ -268,7 +274,8 @@ restart glance-registry
 echo "
 #####################################
 	Install Nova
-#####################################"
+#####################################
+"
 sleep 1
 
 # Check to install nova-compute-kvm or nova-compute-qemu
@@ -379,11 +386,11 @@ chmod +x ~/nova_restart
 
 ~/nova_restart
 sleep 2
- nova-manage db sync
-sleep 2
+nova-manage db sync
+sleep 3
 ~/nova_restart
-sleep 2
- nova-manage service list
+sleep 3
+nova-manage service list
 
 # Create fixed and floating ips
 
@@ -408,7 +415,8 @@ cd
 echo "
 #####################################
 	Install Horizon
-#####################################"
+#####################################
+"
 sleep 1
 
 apt-get -y install openstack-dashboard
