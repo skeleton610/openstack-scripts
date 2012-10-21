@@ -32,7 +32,7 @@ TENANT=openstackDemo          	# The name of tenant (project)
 SERVICE_TENANT=service			# Service tenant
 REGION=RegionOne            	# You must specific it. Imagine that you have multi datacenter. Not important, just keep it by default
 HYPERVISOR=qemu             	# if your machine support KVM (check by run $ kvm-ok), change QEMU to KVM
-NOVA_VOLUME=/dev/sdb        	# Partition to use with nova-volume, here I have 2 HDD then it is sdb
+#NOVA_VOLUME=/dev/sdb        	# Partition to use with nova-volume, here I have 2 HDD then it is sdb
 
 ################################################
 
@@ -498,7 +498,13 @@ cinder-manage db sync
 
 # Restart cinder service
 service cinder-volume restart
-service cinder-api restart 
+service cinder-api restart
+
+# Create 2GB test loop file, mount it then initialise it as an lvm, create a cinder-volumes group
+dd if=/dev/zero of=cinder-volumes bs=1 count=0 seek=2G
+losetup /dev/loop2 cinder-volumes
+pvcreate /dev/loop2
+vgcreate cinder-volumes /dev/loop2
 
 echo "
 #####################################

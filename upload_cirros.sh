@@ -14,6 +14,7 @@
 
 # Scource the openrc file # just for sure if we source the openrc file
 
+source ~/.bashrc
 source ~/openrc
 
 # Create a new folder to store all the image like tty-linux
