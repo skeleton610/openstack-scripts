@@ -7,8 +7,8 @@
 #		- glance
 #		- nova : all components, nova-network uses VlanManager
 #		- horizon
-#   By default this script will use only single NIC eth0 if you have more than one	
-#   feel free to change in the values below.
+#	By default this script will use only single NIC eth0 if you have more than one	
+#	feel free to change in the values below.
 #   
 #																				
 #########################################################################################
