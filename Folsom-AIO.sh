@@ -21,7 +21,7 @@
 # Change these values to fit your requirements
 ###############################################
 
-IP=192.167.0.110				# You public IP 
+IP=192.168.0.110				# You public IP 
 PUBLIC_IP_RANGE=192.168.0.164/27		# The floating IP range
 PUBLIC_NIC=eth0					# The public NIC, floating network, allow instance connect to Internet
 PRIVATE_NIC=eth0				# The private NIC, fixed network. If you have more than 2 NICs specific it eg: eth1
@@ -160,9 +160,9 @@ sed -i "s/# use_syslog = False/use_syslog = False/g" /etc/keystone/keystone.conf
 sed -i "s|connection = sqlite:////var/lib/keystone/keystone.db|connection = mysql://keystone:keystone@$IP/keystone_db|g" /etc/keystone/keystone.conf
 
 service keystone restart
-sleep 3
+sleep 2
 keystone-manage db_sync
-sleep 3
+sleep 2
 service keystone restart
 sleep 3
 

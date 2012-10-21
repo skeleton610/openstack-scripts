@@ -1,4 +1,4 @@
-#!/usr/bin
+#!/bin/bash
 # Remove all the Openstack components: keystone, glance, nova, cinder, horizon
 # Remove mysql-server, ntp, python-django
 
