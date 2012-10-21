@@ -1,13 +1,13 @@
 #########################################################################################
-#	NOT COMPLETE
 #
 #	Author. Tung Ns (tungns.inf@gmail.com)
 #
-#	This script will install an Openstack (Folsom) on single machine with three components:
+#	This script will install an Openstack (Folsom) on single machine with these components:
 #		- keystone
 #		- glance
-#		- nova : all components, nova-network (using VlanManager mode)
-#
+#		- nova : all components (nova-network using VlanManager mode)
+#       - cinder (replace nova-volume)
+#       - horizon
 #
 #########################################################################################
 
