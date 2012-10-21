@@ -21,8 +21,8 @@
 # Change these values to fit your requirements
 ###############################################
 
-IP=172.17.17.21             	# You public IP 
-PUBLIC_IP_RANGE=172.17.17.64/27 # The floating IP range
+IP=192.167.0.110             	# You public IP 
+PUBLIC_IP_RANGE=192.168.0.164/27	# The floating IP range
 PUBLIC_NIC=eth0             	# The public NIC, floating network, allow instance connect to Internet
 PRIVATE_NIC=eth0            	# The private NIC, fixed network. If you have more than 2 NICs specific it eg: eth1
 MYSQL_PASS=root             	# Default password of mysql-server
