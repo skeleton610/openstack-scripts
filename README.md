@@ -27,7 +27,7 @@ Install Openstack Folsom on Ubuntu 12.04LTS with these components:
     keystone
     glance
     nova (using VlanManager mode)
-    cinder (replace for nova-volume)
+    cinder (replace nova-volume)
     horizon
 
 Essex-AIO.sh
