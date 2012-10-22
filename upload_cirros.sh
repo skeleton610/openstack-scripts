@@ -32,9 +32,9 @@ Download cirros image to ~/img
 wget https://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-x86_64-disk.img
 
 echo "
-######################################
-Upload this is cirros image to glance. 
-######################################
+##############################
+Upload cirros image to glance 
+##############################
 "
 
 glance add is_public=true container_format=bare disk_format=qcow2 distro="Cirros" name="Cirros-0.3.0" < cirros-0.3.0-x86_64-disk.img
@@ -46,8 +46,8 @@ List the images
 "
 glance index
 
-###===END===####################################################
-#
-#   This image has default user and password is cirros:cubswin:)
-#   so we can ssh to it directly without keypair
-#
+echo "
+#####################################################################
+	This image has default user and password is cirros@cubswin:)
+#####################################################################   
+"
