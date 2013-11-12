@@ -21,13 +21,13 @@
 # Change these values to fit your requirements
 ###############################################
 
-IP=192.168.0.110				# You public IP 
-PUBLIC_IP_RANGE=192.168.0.164/27		# The floating IP range
+IP=192.168.140.231				# You public IP 
+PUBLIC_IP_RANGE=192.168.142.224/27		# The floating IP range
 PUBLIC_NIC=eth0					# The public NIC, floating network, allow instance connect to Internet
 PRIVATE_NIC=eth0				# The private NIC, fixed network. If you have more than 2 NICs specific it eg: eth1
-MYSQL_PASS=root					# Default password of mysql-server
-CLOUD_ADMIN=admin				# Cloud admin of Openstack
-CLOUD_ADMIN_PASS=password			# Password will use to login into Dashboard later
+MYSQL_PASS=123456a@					# Default password of mysql-server
+CLOUD_ADMIN=linhnh15				# Cloud admin of Openstack
+CLOUD_ADMIN_PASS=123456a@			# Password will use to login into Dashboard later
 TENANT=openstackDemo				# The name of tenant (project)
 SERVICE_TENANT=service				# Service tenant
 REGION=RegionOne				# You must specific it. Imagine that you have multi datacenter. Not important, just keep it by default
